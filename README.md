@@ -2,8 +2,8 @@
 
 You have a `String` of JavaScript code. How can you execute it? This is a playground for testing various dynamic script execution methods in Node.js and what features they may or may not support.
 
-* Research for [`node-retrieve-globals`](https://github.com/zachleat/node-retrieve-globals/).
 * [`vm` Node.js documentation](https://nodejs.org/docs/latest/api/vm.html)
+* Research for [`node-retrieve-globals`](https://github.com/zachleat/node-retrieve-globals/).
 
 <table>
   <thead>
