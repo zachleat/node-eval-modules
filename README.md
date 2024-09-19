@@ -1,0 +1,69 @@
+# Script Evaluation in Node.js
+
+Playground for testing various dynamic script execution methods in Node.js and what features they may or may not support.
+
+* Research for [`node-retrieve-globals`](https://github.com/zachleat/node-retrieve-globals/).
+* [`vm` Node.js documentation](https://nodejs.org/docs/latest/api/vm.html)
+
+<table>
+  <thead>
+    <tr>
+      <th>JavaScript Feature</th>
+      <th><code>Module#_compile</code></th>
+      <th><code>vm.Script</code></th>
+      <th><code>vm.Module</code></th>
+    </tr>
+  </thead>
+  <tbody>
+		<tr>
+      <td><code>module.exports</code> (CommonJS-only)</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No<sup>5</sup></td>
+    </tr>
+		<tr>
+      <td><code>export</code> (ESM-only)</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+    <tr>
+      <td><code>require</code></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+		<tr>
+      <td><code>import</code> (ESM-only)</td>
+      <td>No<sup>4</sup></td>
+      <td>No<sup>4</sup></td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+		<tr>
+      <td>Dynamic <code>import()</code></td>
+      <td>Yes</td>
+      <td>Yes<sup>2</sup></td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+		<tr>
+      <td>Top level <code>async</code> or <code>await</code></td>
+      <td>Faux<sup>3</sup></td>
+      <td>Faux<sup>3</sup></td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+  </tbody>
+</table>
+
+Notes:
+
+1. Requires `--experimental-vm-modules`. Use outputs an `ExperimentalWarning` to the console.
+2. Requires `vm.constants.USE_MAIN_CONTEXT_DEFAULT_LOADER` an experimental Node feature added in v21.7.0, v20.12.0. Any use outputs an `ExperimentalWarning` to the console.
+3. Requires the code to be wrapped in an `(async () => {})()` IIFE wrapper.
+4. Can use `esm-import-transformer` to transform static `import` to dynamic `import()` or `require`: https://github.com/zachleat/esm-import-transformer
+5. Probably shimmable but I think that would cause more confusion than it’s worth.
+
+## Alternate methods
+
+* A lot of the pain here is due to unstable `vm.Module`. If you already have access to a transpiler (e.g. `esbuild`), use that to output CommonJS code and run it through `Module#_compile` to bypass current limitations with dynamic ESM in Node.js.
+	* [Vite writes a temporary file to the filesystem](https://github.com/vitejs/vite/blob/77d5165e2f252bfecbb0eebccc6f04dc8be0c5ba/packages/vite/src/node/config.ts#L1172-L1184) to workaround this issue.
+	* Some [more discussion on Mastodon](https://fediverse.zachleat.com/@zachleat/111580482330587997).
