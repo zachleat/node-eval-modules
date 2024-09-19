@@ -4,8 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "test": "npx ava",
-    "test-modules": "NODE_OPTIONS='--experimental-vm-modules' npx ava",
+    "test": "npx ava && NODE_OPTIONS='--experimental-vm-modules' npx ava",
     "watch": "NODE_OPTIONS='--experimental-vm-modules' npx ava --watch"
   },
   "author": {

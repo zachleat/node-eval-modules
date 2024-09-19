@@ -4,6 +4,7 @@ import { exec } from "../data-uri.js";
 test("const", async t => {
 	let results = await exec(`const a = 1;`);
 	t.is(Object.keys(results).length, 0);
+	t.is(globalThis.a, undefined);
 });
 
 test.skip("module.exports", async t => {
@@ -37,4 +38,9 @@ test.skip("dynamic import", async t => {
 	// let results = await exec(`module.exports = (async () => await import("@zachleat/noop"))()`);
 	let results = await exec(`(async () => await import("@zachleat/noop"))()`);
 	t.is(Object.keys(results).length, 0);
+});
+
+test.skip("doesn’t leak", async t => {
+	let results = await exec(`globalThis.b = 1;`);
+	t.is(globalThis.b, undefined);
 });

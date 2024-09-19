@@ -60,6 +60,13 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
       <td>Yes<sup>1</sup></td>
       <td>Yes</td>
     </tr>
+    <tr>
+      <td><em>Can</em> leak to global scope</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
   </tbody>
 </table>
 
