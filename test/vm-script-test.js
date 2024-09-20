@@ -29,6 +29,12 @@ test.skip("import", async t => {
 	t.is(Object.keys(results).length, 0);
 });
 
+test.skip("import (relative)", async t => {
+	let results = await exec(`import "./src/_import.js"`);
+	t.is(Object.keys(results).length, 0);
+});
+
+
 test("top level async/await", async t => {
 	let results = await exec(`await new Promise(resolve => resolve())`);
 	t.is(Object.keys(results).length, 0);

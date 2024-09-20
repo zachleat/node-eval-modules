@@ -33,6 +33,12 @@ testFn("import", async t => {
 	t.is(Object.keys(results).length, 0);
 });
 
+testFn("import (relative)", async t => {
+	let results = await exec(`import "./src/_import.js"`);
+	t.is(Object.keys(results).length, 0);
+});
+
+
 testFn("top level async/await", async t => {
 	let results = await exec(`await new Promise(resolve => resolve())`);
 	t.is(Object.keys(results).length, 0);
