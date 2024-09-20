@@ -5,6 +5,7 @@ import { exec as dataUri } from "../data-uri.js";
 import { exec as vmModule } from "../vm-module.js";
 import { exec as vmScript } from "../vm-script.js";
 import { exec as moduleCompile } from "../module-compile.js";
+import { exec as functionConstructor } from "../function.js";
 
 const allTests = {
 	"const": {
@@ -18,6 +19,7 @@ const allTests = {
 			...["SourceTextModule" in vm ? "vm-module" : undefined],
 			"vm-script",
 			"module-compile",
+			"function",
 		]
 	},
 	"module.exports": {
@@ -40,6 +42,7 @@ const allTests = {
 			...["SourceTextModule" in vm ? "vm-module" : undefined],
 			"vm-script",
 			"module-compile",
+			"function",
 		]
 	},
 	"export": {
@@ -81,10 +84,11 @@ const allTests = {
 			...["SourceTextModule" in vm ? "vm-module" : undefined],
 			"vm-script",
 			"module-compile",
+			"function",
 		]
 	},
 	"dynamic import": {
-		code: `(async () => await import("@zachleat/noop"))()`,
+		code: `await import("@zachleat/noop")`,
 		test: function(results, t) {
 			t.is(Object.keys(results).length, 0);
 		},
@@ -92,6 +96,7 @@ const allTests = {
 			...["SourceTextModule" in vm ? "vm-module" : undefined],
 			"vm-script",
 			"module-compile",
+			"function",
 		],
 	},
 	"doesn’t leak": {
@@ -102,6 +107,7 @@ const allTests = {
 		expectToPass: [
 			...["SourceTextModule" in vm ? "vm-module" : undefined],
 			"vm-script",
+			// "function",
 		],
 	},
 };
@@ -121,3 +127,4 @@ executeTestSuite("data-uri", dataUri);
 executeTestSuite("vm-module", vmModule);
 executeTestSuite("vm-script", vmScript);
 executeTestSuite("module-compile", moduleCompile);
+executeTestSuite("function", functionConstructor);

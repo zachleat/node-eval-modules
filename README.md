@@ -16,6 +16,7 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
       <th><code>vm.Script</code></th>
       <th><code>vm.Module</code></th>
       <th><code>import("data:…")</code></th>
+      <th><code>Function()</code></th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +26,7 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
       <td>Yes</td>
       <td>No<sup>5</sup></td>
       <td>No</td>
+      <td>No</td>
     </tr>
 		<tr>
       <td><code>export</code> (ESM-only)</td>
@@ -32,6 +34,7 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
       <td>No</td>
       <td>Yes<sup>1</sup></td>
       <td>Yes</td>
+      <td>No</td>
     </tr>
     <tr>
       <td><code>require</code></td>
@@ -39,12 +42,14 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
       <td>Yes</td>
       <td>Yes<sup>1</sup></td>
       <td>No</td>
+      <td>Yes</td>
     </tr>
 		<tr>
       <td><code>import</code> (ESM-only)</td>
       <td>No<sup>4</sup></td>
       <td>No<sup>4</sup></td>
       <td>Yes<sup>1</sup></td>
+      <td>No</td>
       <td>No</td>
     </tr>
 		<tr>
@@ -53,6 +58,7 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
       <td>Yes<sup>2</sup></td>
       <td>Yes<sup>1</sup></td>
       <td>No</td>
+      <td>Yes</td>
     </tr>
 		<tr>
       <td>Top level <code>async</code> or <code>await</code></td>
@@ -60,12 +66,14 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
       <td>Faux<sup>3</sup></td>
       <td>Yes<sup>1</sup></td>
       <td>Yes</td>
+      <td>Faux<sup>3</sup></td>
     </tr>
     <tr>
       <td><em>Can</em> leak to global scope</td>
       <td>Yes</td>
       <td>No</td>
       <td>No</td>
+      <td>Yes</td>
       <td>Yes</td>
     </tr>
   </tbody>
