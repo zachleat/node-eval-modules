@@ -6,6 +6,7 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
 * [MDN docs for `eval`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)
 * Research for [`node-retrieve-globals`](https://github.com/zachleat/node-retrieve-globals/).
 * [`import("data:…")` approach from `2ality.com`](https://2ality.com/2019/10/eval-via-import.html)
+* [`import("blob:"…")` approach suggested by David Bushnell](https://github.com/dbushell/dinossr/blob/main/src/bundle/import.ts#L13) (not currently supported in Node.js but works in Deno!)
 
 <table>
   <thead>
