@@ -21,7 +21,7 @@ You have a `String` of JavaScript code. How can you execute it? This is a playgr
   </thead>
   <tbody>
 		<tr>
-      <td><code>module.exports</code> (CommonJS-only)</td>
+      <td>Assign <code>module.exports</code> (CommonJS-only)</td>
       <td>Yes</td>
       <td>No</td>
       <td>Yes</td>
